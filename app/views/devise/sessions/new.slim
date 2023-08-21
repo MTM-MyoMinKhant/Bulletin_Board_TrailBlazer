@@ -1,0 +1,30 @@
+.form_box
+  .form_header 
+    h4 Log In
+
+  .form_info
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+
+      .fleld.clearfix
+        = f.label :email , class: "left required"
+        = f.email_field :email, autofocus: true, autocomplete: "email" , class: "right"
+
+      .fleld.clearfix
+        = f.label :password , class: "left required"
+        = f.password_field :password, autofocus: true, autocomplete: "password" , class: "right"
+
+      -if devise_mapping.rememberable? 
+        .field.clearfix
+          = link_to "forgotten password" , new_user_password_path , class: "right link2"
+          = f.label :remember_me , class: "right"
+          = f.check_box :remember_me , class: "right box"
+      
+      .actions.clearfix
+        = f.submit "Log in" , class: "right "
+          
+      .fleld.clearfix
+        a.link2.right href="sign_up"
+          |Create Account 
+          i.fa-solid.fa-user-plus.right style="color: #0a60f5; margin-top:5px;"
+        
+

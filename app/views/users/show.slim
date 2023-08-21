@@ -1,0 +1,35 @@
+.form_box
+  .form_header 
+    h4 Profile
+  
+  .clearfix 
+    .p-left
+      img.profile-image src="/profile2.jpeg" alt="Profile Image"
+
+    .p-right
+      .clearfix.profile-info
+        p.left Name :
+        p.test = @user.name
+      .clearfix.profile-info
+        p.left Type :
+        p.test
+          -if @user.role == 0
+            span Admin 
+          -elsif @user.role ==1
+            span User 
+          -else 
+            span Underfined
+      .clearfix.profile-info 
+        p.left Email :
+        p.test = @user.email
+      .clearfix.profile-info 
+        p.left Phone :
+        p.test =@user.phone
+      .clearfix.profile-info 
+        p.left Date Of Birth :
+        p.test =@user.dob.strftime("%Y-%m-%d")
+      .clearfix.profile-info 
+        p.left Address :
+        p.test =@user.address
+      .clearfix.profile-info
+         = link_to 'Edit Profile', edit_user_path(@user.id) , class: "btn btn-primary"

@@ -1,0 +1,14 @@
+.form_box
+  .form_header 
+    h4 Upload CSV file
+
+  .form_info2
+    = form_with model: @post , url: csv_posts_path , method: :post do |f|
+
+      .field.clearfix
+        = f.label :file , "Upload Csv File :" , class: "left"
+        = f.file_field :file, autofocus: true, class: "right"
+
+      .field.clearfix 
+        = link_to "Back", posts_path , class: "right btn btn-secondary"
+        = f.submit "Submit" , class: "right btn btn-primary" 

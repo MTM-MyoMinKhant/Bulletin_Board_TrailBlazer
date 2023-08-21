@@ -1,0 +1,132 @@
+.lists 
+  .form_header 
+    h4 User Lists
+
+  .middle.clearfix  
+    = search_form_for @q , html: { class: "right" } do |f| 
+      = f.label :name_cont , "Name :" 
+      = f.search_field :name_cont 
+      = f.label :email_cont , "Email :" 
+      = f.search_field :email_cont 
+      = f.label :dob_gteq , "From :" 
+      = f.date_field :dob_gteq 
+      = f.label :dob_lteq , "To :" 
+      = f.date_field :dob_lteq 
+      = f.submit "Search" , class: "btn btn-success" 
+      
+    table.table.table-striped.item-list
+      thead.table-primary
+        tr 
+          th No 
+          th Name
+          th Email
+          th Created User
+          th Type
+          th Phone
+          th Date Of Birth
+          th Address
+          th Created_date 
+          th Update_date
+          th Operation
+
+      tbody
+        -@user_lists.each do |user_list|
+          tr
+            td = user_list.id
+            td = user_list.name  
+            td = user_list.email
+            td = user_list.create_user.name
+            td 
+              - if user_list.role == 0
+                p Admin
+              - elsif user_list.role == 1
+                p User 
+              - else 
+                p Undefined
+            td = user_list.phone
+            td = user_list.dob
+            td = user_list.address
+            td = user_list.created_at.strftime("%Y-%m-%d")
+            td = user_list.updated_at.strftime("%Y-%m-%d")
+            td 
+              = link_to "Edit" , edit_user_path(user_list.id) , class: "btn btn-primary"
+              = button_tag "Detail", type: "button" , class: "detail-show-user btn btn-secondary" , onclick: "showUserDetails(#{user_list.to_json} ,
+                                                                                                              #{user_list.create_user.name.to_json} , 
+                                                                                                              #{user_list.updated_user.name.to_json})"
+              = button_tag "Delete", type: "button" , class: "delete-show-user btn btn-danger" , onclick:"deleteUserDetails(#{user_list.to_json} ,
+                                                                                                          #{@auth.to_json})"
+    = will_paginate @user_lists  
+.detail-user.dd-box.none
+  h5 User Details
+  hr
+
+  .clearfix 
+    .p-left
+      img.profile-image src="/profile2.jpeg" alt="Profile Image"
+
+    .p-right
+      .clearfix.profile-info
+        p.left Name :
+        p#detail-user-name.test 
+      .clearfix.profile-info
+        p.left Type :
+        p#detail-user-role.test 
+      .clearfix.profile-info 
+        p.left Email :
+        p#detail-user-email.test 
+      .clearfix.profile-info 
+        p.left Phone :
+        p#detail-user-phone.test 
+      .clearfix.profile-info 
+        p.left Date Of Birth :
+        p#detail-user-dob.test 
+      .clearfix.profile-info 
+        p.left Address :
+        p#detail-user-address.test 
+      .clearfix.profile-info 
+        p.left Created Date :
+        p#detail-user-cd.test 
+      .clearfix.profile-info 
+        p.left Created User :
+        p#detail-user-cu.test 
+      .clearfix.profile-info 
+        p.left Updated Date :
+        p#detail-user-ud.test 
+      .clearfix.profile-info 
+        p.left Updated User :
+        p#detail-user-uu.test 
+  hr
+  = button_tag "Close", type: "button" , class: "btn btn-secondary right detail-hide-user"
+
+.delete-user.dd-box.none
+  h5 Delete Confirm
+  hr
+
+  h4.error Are You sure to delete User?
+  .clearfix.profile-info
+    p.left Id :
+    p#delete-user-id.test 
+  .clearfix.profile-info
+    p.left Name :
+    p#delete-user-name.test 
+  .clearfix.profile-info
+    p.left Type :
+    p#delete-user-role.test 
+  .clearfix.profile-info 
+    p.left Email :
+    p#delete-user-email.test 
+  .clearfix.profile-info 
+    p.left Phone :
+    p#delete-user-phone.test 
+  .clearfix.profile-info 
+    p.left Date Of Birth :
+    p#delete-user-dob.test
+  .clearfix.profile-info 
+    p.left Address :
+    p#delete-user-address.test
+  hr
+  = form_with model: @user , url: soft_delete_users_path , method: :delete do |f|
+    = button_tag "Close", type: "button" , class: "btn btn-secondary right delete-hide-user"
+    = f.hidden_field :id , id: "user_soft_delete"
+    = f.hidden_field :deleted_user_id , id: "user_delete_user"
+    = f.submit "Delete" , class: "btn btn-danger right"

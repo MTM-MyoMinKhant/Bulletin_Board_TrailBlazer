@@ -1,0 +1,14 @@
+.form_box
+  .form_header 
+    h4 Forgot your password?
+
+  .form_info
+    = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+      = render "devise/shared/error_messages", resource: resource
+
+      .field.clearfix
+        = f.label :email , class: "left required"
+        = f.email_field :email, autofocus: true, autocomplete: "email" , class: "right"
+      
+      .actions.clearfix
+        = f.submit "Send me reset password instructions" , class: "right"

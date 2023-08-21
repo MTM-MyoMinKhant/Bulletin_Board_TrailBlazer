@@ -1,0 +1,55 @@
+.form_box
+  .form_header 
+    h4 Profile Edit
+
+  .form_info
+    = form_with model: @user , url: confirm_users_path , method: :get do |f| 
+      
+      .field.clearfix
+        = f.label :name , class: "left required"
+        = f.text_field :name, autofocus: true, autocomplete: "name" , class: "right"
+      
+      .field.clearfix 
+        p.error.right This is an name testing error
+
+      .field.clearfix
+        = f.label :email , class: "left required"
+        = f.email_field :email, autofocus: true, autocomplete: "email" , class: "right"
+
+      .field.clearfix 
+        p.error.right This is an email testing error
+
+      .field.clearfix
+        = f.label :phone , class: "left required"
+        = f.text_field :phone, autocomplete: "phone" , class: "right "
+
+      .field.clearfix 
+        p.error.right This is an phone testing error
+      
+      .field.clearfix
+        = f.label :dob , class: "left required"
+        = f.date_field :dob, autocomplete: "date-of-birth" , class: "right "
+
+      .field.clearfix 
+        p.error.right This is an dob testing error
+
+      .field.clearfix
+        = f.label :address , class: "left required"
+        = f.text_field :address, autocomplete: "date-of-birth" , class: "right "
+      
+      .field.clearfix 
+        p.error.right This is an address testing error
+
+      .field.clearfix
+        = f.label :profile, class: "left"
+        img.confirm-image.right src="/profile2.jpeg" alt="Profile Image"
+
+      .field.clearfix
+        = f.label :avatar, class: "left"
+        = f.file_field :avatar, autocomplete: "date-of-birth" , class: "right "
+
+      .actions.clearfix
+        = link_to 'Forget Password', password_change_user_path(1) , class: "link2 right"
+        = link_to 'Back', :back  , class: "btn btn-secondary right"
+        = f.submit "Edit" , class: "btn btn-primary right"
+

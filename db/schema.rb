@@ -31,7 +31,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_081800) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.integer "role"
-    t.integer "phone"
+    t.bigint "phone"
     t.string "address"
     t.string "avatar"
     t.date "dob"

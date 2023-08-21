@@ -1,0 +1,5 @@
+  <%= CSV.generate_line(['title' , 'descripton' , 'status' , 'create_user_id' , 'updated_user_id'])%>
+<% @for_csv.each do |csv| %>
+  <% status = csv.status == 1 ? 'on' : 'off' %>
+  <%= CSV.generate_line([csv.title , csv.description , status , csv.create_user.name , csv.updated_user.name])%>
+<% end %>

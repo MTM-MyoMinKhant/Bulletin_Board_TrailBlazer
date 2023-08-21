@@ -1,0 +1,18 @@
+.form_box
+  .form_header 
+    h4 Create Post
+
+  .form_info
+    = form_with model: @post , method: :post do |f|
+
+      .field.clearfix
+        = f.label :title , class: "left required"
+        = f.text_field :title, autofocus: true, autocomplete: "title" , class: "right"
+
+      .field.clearfix
+        = f.label :description , class: "left required"
+        = f.text_field :description, autofocus: true, autocomplete: "description" , class: "right"
+      
+      .actions.clearfix
+        = link_to 'Back', :back  , class: "btn btn-secondary right"
+        = f.submit "Confirm" , class: "btn btn-success right"

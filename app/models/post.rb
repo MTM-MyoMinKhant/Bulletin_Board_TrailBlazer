@@ -6,5 +6,10 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
 
-  
+  def self.ransackable_attributes(auth_object = nil)
+    ["title", "description"] # Add any other attributes you want to make searchable
+  end
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
 end
