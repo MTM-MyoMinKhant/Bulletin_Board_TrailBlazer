@@ -11,6 +11,18 @@ class PostsController < ApplicationController
 
   def new
     @auth = current_user
+    run Post::Operation::Create::Present
+  end
+
+  def create 
+    @auth = current_user
+    @result = run Post::Operation::Create , current_user: current_user
+    
+    if @result.success?
+      redirect_to posts_path
+    else
+      render :new , status: :unprocessable_entity
+    end
   end
 
   def edit

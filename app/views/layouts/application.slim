@@ -24,7 +24,7 @@ html
         .right.h-right 
           -if user_signed_in?
             -if @auth.role == 0
-              a.color1.link href="#" title="User Homepage" Create User
+              =link_to "Create User" , new_user_path , class: "color1 link"
             #user_info.right 
               p.username.color1 
                 =@auth.name 

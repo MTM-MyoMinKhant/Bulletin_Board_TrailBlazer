@@ -8,10 +8,12 @@ Rails.application.routes.draw do
   resources 'users' do
     collection do
       get 'confirm' , to: 'users#new_confirm'
+      post 'create_confirm' , to: 'users#create_user'
       delete 'soft_delete' , to: 'users#soft_delete'
     end
     member do
       get 'password_change' , to: 'users#password_change'
+      post 'delete' , to: 'users#delete'
     end
   end
 

@@ -3,16 +3,30 @@
     h4 Create Post
 
   .form_info
-    = form_with model: @post , method: :post do |f|
+    = form_with model: @form , url: posts_path , method: :post do |f|
 
       .field.clearfix
         = f.label :title , class: "left required"
         = f.text_field :title, autofocus: true, autocomplete: "title" , class: "right"
+        - if @form.errors[:title].any?
+      
+      .field.clearfix 
+        p.error.right 
+          = @form.errors.full_messages_for(:title).first 
 
       .field.clearfix
         = f.label :description , class: "left required"
         = f.text_field :description, autofocus: true, autocomplete: "description" , class: "right"
+        - if @form.errors[:description].any?
       
+      .field.clearfix
+        p.error.right 
+          = @form.errors.full_messages_for(:description).first 
+
       .actions.clearfix
-        = link_to 'Back', :back  , class: "btn btn-secondary right"
+        = link_to 'Back', posts_path , class: "btn btn-secondary right"
         = f.submit "Confirm" , class: "btn btn-success right"
+      
+      = f.hidden_field :status 
+      = f.hidden_field :create_user_id
+      = f.hidden_field :updated_user_id

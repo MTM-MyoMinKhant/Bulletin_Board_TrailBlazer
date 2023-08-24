@@ -52,6 +52,7 @@ gem "bootsnap", require: false
 gem 'byebug', '~> 11.1', '>= 11.1.3'
 gem 'devise', '~> 4.9', '>= 4.9.2'
 gem 'letter_opener', '~> 1.8', '>= 1.8.1'
+gem 'carrierwave', '~> 2.2', '>= 2.2.4'
 gem 'trailblazer-rails', '~> 2.4', '>= 2.4.3'
 gem 'reform-rails', '~> 0.2.6'
 gem 'slim-rails', '~> 3.6', '>= 3.6.2'

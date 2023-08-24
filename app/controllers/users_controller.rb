@@ -10,10 +10,30 @@ class UsersController < ApplicationController
 
   def new
     @auth = current_user
+    run User::Operation::Create::Present , user: params[:user]
+  end
+  
+  def create_user
+    byebug
+    @test = "success"
+    run User::Operation::Create , current_user: current_user do |result|
+      byebug
+      redirect_to confirm_users_path(user: result[:model][:id])
+    end
   end
 
   def new_confirm
-    @auth = current_user
+    @auth = current_user 
+    run User::Operation::Confirm::Present, id: params[:user] do |result|
+      @result = result[:user]
+      @user = @result[0]
+    end
+  end 
+
+  def delete
+    byebug
+    run User::Operation::Delete
+    @test = "success"
   end
 
   def show
@@ -28,11 +48,6 @@ class UsersController < ApplicationController
   
   def password_change
     @auth = current_user
-  end
-
-  def destroy
-    byebug
-    @test = "success"
   end
 
   def soft_deletew

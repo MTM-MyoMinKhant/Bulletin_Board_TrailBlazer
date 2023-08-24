@@ -5,22 +5,47 @@
 #
 User.create ([
   { 
-    name: "user4",
-    email: "user4@gmail.com",
+    name: "admin",
+    email: "admin@gmail.com",
+    password: "1234qwer",
+    role: 0,
+    phone: 912343567890,
+    address: "East Blue",
+    dob: "3.6.1999", 
+    create_user_id: 1,
+    updated_user_id: 1
+  },
+  { 
+    name: "user",
+    email: "user@gmail.com",
     password: "1234qwer",
     role: 1,
-    phone: 9455886734,
+    phone: 9556666640,
     address: "China Town",
     dob: "4.12.2000", 
-    create_user_id: 2,
-    updated_user_id: 2
+    create_user_id: 1,
+    updated_user_id: 1
   }
 ])
 
 Post.create ([
   {
-    title: "Title 4",
-    description: "This is the description for Title 4",
+    title: "Title",
+    description: "This is the description for Title",
+    status: "active",
+    create_user_id: 1,
+    updated_user_id: 1
+  },
+  {
+    title: "Title 1",
+    description: "This is the description for Title 1",
+    status: "active",
+    create_user_id: 1,
+    updated_user_id: 1
+  },
+  {
+    title: "Title 2",
+    description: "This is the description for Title 2",
     status: "active",
     create_user_id: 2,
     updated_user_id: 2

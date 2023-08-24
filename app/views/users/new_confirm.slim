@@ -3,7 +3,7 @@
     h4 Register Confirm
 
   .form_info
-    = form_with model: @user , method: :post do |f| 
+    = form_with model: @user ,url: delete_user_path(@user.id) , method: :post do |f| 
       
       .field.clearfix
         = f.label :name , class: "left required"
@@ -11,15 +11,7 @@
 
       .field.clearfix
         = f.label :email , class: "left required"
-        = f.email_field :email, autofocus: true, autocomplete: "email" , readonly: true , class: "right"
-
-      .field.clearfix
-        = f.label :password , class: "left required"
-        = f.password_field :password, autocomplete: "new-password" , readonly: true , class: "right"     
-
-      .field.clearfix
-        = f.label :password_confirmation , class: "left required"
-        = f.password_field :password_confirmation, autocomplete: "new-password" , readonly: true , class: "right "
+        = f.email_field :email, autofocus: true, autocomplete: "email" , readonly: true , class: "right"   
 
       .field.clearfix
         = f.label :phone , class: "left required"
@@ -27,16 +19,17 @@
 
       .field.clearfix
         = f.label :dob , "Date Of Birth" , class: "left required"
-        = f.date_field :dob, autocomplete: "date-of-birth" , readonly: true , class: "right "
+        = f.date_field :dob, autocomplete: "dob" , readonly: true , class: "right "
 
       .field.clearfix
         = f.label :address , class: "left required"
-        = f.text_field :address, autocomplete: "date-of-birth" , readonly: true , class: "right "      
+        = f.text_field :address, autocomplete: "address" , readonly: true , class: "right "      
 
       .field.clearfix
         = f.label :profile, class: "left"
-        img.confirm-image.right src="/profile2.jpeg" alt="Profile Image"
- 
+        = tag.img(src: "uploads/user/avatar/#{@user.id}/#{@user.avatar.identifier}", class: "confirm-image right")
+
       .actions.clearfix
-        = link_to 'Back', :back  , class: "btn btn-secondary right"
-        = f.submit "Register" , class: "btn btn-primary right"
+        = f.submit "Back" , class: "btn btn-secondary right"
+        = link_to 'Register', users_path  , class: "btn btn-primary right"
+       

@@ -4,57 +4,57 @@
     h4 Register
 
   .form_info
-    = form_with model: @user , url: confirm_users_path , method: :get do |f| 
+     = form_for @form, url: create_confirm_users_path ,method: :post do |f|
       
       .field.clearfix
         = f.label :name , class: "left required"
-        = f.text_field :name, autofocus: true, autocomplete: "name" , class: "right"
-      
+        = f.text_field :name, autofocus: true, autocomplete: "name" , class: "right"  
       .field.clearfix 
-        p.error.right This is an name testing error
+        p.error.right 
+          = @form.errors.full_messages_for(:name).first 
 
       .field.clearfix
         = f.label :email , class: "left required"
         = f.email_field :email, autofocus: true, autocomplete: "email" , class: "right"
-
       .field.clearfix 
-        p.error.right This is an email testing error
+        p.error.right 
+          = @form.errors.full_messages_for(:email).first 
 
       .field.clearfix
         = f.label :password , class: "left required"
         = f.password_field :password, autocomplete: "new-password" , class: "right"
-      
       .field.clearfix 
-        p.error.right This is an password testing error
+        p.error.right 
+          = @form.errors.full_messages_for(:password).first 
 
-      .field.clearfix
-        = f.label :password_confirmation , class: "left required"
-        = f.password_field :password_confirmation, autocomplete: "new-password" , class: "right "
+      / .field.clearfix
+      /   = f.label :password_confirmation , class: "left required"
+      /   = f.password_field :password_confirmation, autocomplete: "new-password" , class: "right"
 
       .field.clearfix
         = f.label :phone , class: "left required"
         = f.text_field :phone, autocomplete: "phone" , class: "right "
-
       .field.clearfix 
-        p.error.right This is an phone testing error
+        p.error.right 
+          = @form.errors.full_messages_for(:phone).first 
       
-      .field.clearfix
+      .field.clearfixB
         = f.label :dob , class: "left required"
         = f.date_field :dob, autocomplete: "date-of-birth" , class: "right "
-
       .field.clearfix 
-        p.error.right This is an dob testing error
+        p.error.right 
+          = @form.errors.full_messages_for(:dob).first 
 
       .field.clearfix
         = f.label :address , class: "left required"
-        = f.text_field :address, autocomplete: "date-of-birth" , class: "right "
-      
+        = f.text_field :address, autocomplete: "address" , class: "right "   
       .field.clearfix 
-        p.error.right This is an address testing error
+        p.error.right 
+          = @form.errors.full_messages_for(:address).first 
 
       .field.clearfix
         = f.label :avatar, class: "left"
-        = f.file_field :avatar, autocomplete: "date-of-birth" , class: "right "
+        = f.file_field :avatar, autocomplete: "avatar" , class: "right "  
 
       .actions.clearfix
         = link_to 'Back', :back  , class: "btn btn-secondary right"
