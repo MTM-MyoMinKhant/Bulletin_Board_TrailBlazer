@@ -27,7 +27,7 @@
 
       .field.clearfix
         = f.label :profile, class: "left"
-        = tag.img(src: "uploads/user/avatar/#{@user.id}/#{@user.avatar.identifier}", class: "confirm-image right")
+        = tag.img(src: "/uploads/user/avatar/#{@user.id}/#{@user.avatar.identifier}", class: "confirm-image right")
 
       .actions.clearfix
         = f.submit "Back" , class: "btn btn-secondary right"

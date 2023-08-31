@@ -8,7 +8,6 @@
       .field.clearfix
         = f.label :title , class: "left required"
         = f.text_field :title, autofocus: true, autocomplete: "title" , class: "right"
-        - if @form.errors[:title].any?
       
       .field.clearfix 
         p.error.right 
@@ -17,7 +16,6 @@
       .field.clearfix
         = f.label :description , class: "left required"
         = f.text_field :description, autofocus: true, autocomplete: "description" , class: "right"
-        - if @form.errors[:description].any?
       
       .field.clearfix
         p.error.right 

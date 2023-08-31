@@ -19,7 +19,7 @@ class PostsController < ApplicationController
     @result = run Post::Operation::Create , current_user: current_user
     
     if @result.success?
-      redirect_to posts_path
+      redirect_to posts_path , flash: {success: "Post Successfully Created"}
     else
       render :new , status: :unprocessable_entity
     end
@@ -27,11 +27,38 @@ class PostsController < ApplicationController
 
   def edit
     @auth = current_user
-    @post = Post.find(params[:id])
+    run Post::Operation::Update::Present
+  end
+
+  def update
+    @auth = current_user
+    @result = run Post::Operation::Update , current_user: current_user
+
+    if @result.success?
+      redirect_to edit_confirm_post_path(post: {id: params[:id] , title: params[:post][:title] , description: params[:post][:description] , status: params[:post][:status]})
+    else
+      render :edit , status: :unprocessable_entity
+    end
   end
 
   def edit_confirm
+    @data = params[:post]
+    @status = @data[:status]
+    if @status.to_i == 1 
+      @check = true
+    else 
+      @check = false
+    end
+    @post = Post.find(params[:id])
     @auth = current_user
+
+  end
+
+  def edit_data
+    @auth = current_user
+    run Post::Operation::Update::Confirm , current_user: current_user do |result|
+      redirect_to posts_path , flash: {success: "Post Successfully Updated"}
+    end
   end
 
   def csv
@@ -39,7 +66,6 @@ class PostsController < ApplicationController
   end
 
   def csv_upload
-    byebug
     @file = params[:file]  
     @test = 'Success'
     if @file == nil
@@ -57,7 +83,7 @@ class PostsController < ApplicationController
           post_hash[:updated_user_id] = row["updated_user_id"] 
           Post.create(post_hash)
         end
-        redirect_to posts_path, notice: "File Upload Successfully"
+        redirect_to posts_path, flash: {success: "File Upload Successfully"}
       else 
         redirect_to csv_posts_path, notice: "Columns are not the same"
       end
@@ -69,7 +95,7 @@ class PostsController < ApplicationController
   def soft_delete
     @result = Post::Operation::SoftDelete.wtf?(current_user: current_user , params: {id: params[:id] })
     if @result.success?
-       redirect_to posts_path
+       redirect_to posts_path , flash: {success: "Post Successfully Deleted"}
     end
   end
 end

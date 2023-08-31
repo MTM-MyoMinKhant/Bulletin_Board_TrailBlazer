@@ -3,20 +3,27 @@
     h4 Edit Post
 
   .form_info
-    = form_with model: @post ,url: edit_confirm_post_path(1), method: :get do |f|
+    = form_with model: @form , method: :put do |f|
 
       .field.clearfix
         = f.label :title , class: "left required"
         = f.text_field :title, autofocus: true, autocomplete: "title" , class: "right"
+        - if @form.errors[:title].any?    
+      .field.clearfix 
+        p.error.right 
+          = @form.errors.full_messages_for(:title).first 
 
       .field.clearfix
         = f.label :description , class: "left required"
         = f.text_field :description, autofocus: true, autocomplete: "description" , class: "right"
+        - if @form.errors[:description].any?   
+      .field.clearfix
+        p.error.right 
+          = @form.errors.full_messages_for(:description).first 
       
       .field.form-check.form-switch.clearfix 
         = f.check_box :status, class: "form-check-input right"
-        = f.label :status, class: "form-check-label right"
-        
+        = f.label :status, class: "form-check-label right"     
       
       .actions.clearfix
         = link_to 'Back', :back  , class: "btn btn-secondary right"

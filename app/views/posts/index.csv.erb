@@ -3,3 +3,4 @@
   <% status = csv.status == 1 ? 'on' : 'off' %>
   <%= CSV.generate_line([csv.title , csv.description , status , csv.create_user.name , csv.updated_user.name])%>
 <% end %>
+  

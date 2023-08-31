@@ -3,20 +3,22 @@
     h4 Edit Confirm Post
 
   .form_info
-    = form_with model: @post , method: :post do |f|
+    = form_with model: @post , url: edit_confirm_post_path(@data[:id]) , method: :post do |f|
 
       .field.clearfix
         = f.label :title , class: "left required"
-        = f.text_field :title, autofocus: true, autocomplete: "title" , readonly: true , class: "right"
+        = f.text_field :title, autofocus: true, value: @data[:title] ,  readonly: true , class: "right"
 
       .field.clearfix
         = f.label :description , class: "left required"
-        = f.text_field :description, autofocus: true, autocomplete: "description" , readonly: true , class: "right"
+        = f.text_field :description, autofocus: true, value: @data[:description] , readonly: true , class: "right"
       
       .field.form-check.form-switch.clearfix 
-        = f.check_box :status, disable: true , class: "form-check-input right"
-        = f.label :status, class: "form-check-label right"        
-      
+        = f.check_box :status, disabled: true, checked: @check, class: "form-check-input right"
+        = f.label :status, class: "form-check-label right"  
+
+      = f.hidden_field :status, value: @data[:status]
+
       .actions.clearfix
         = link_to 'Back', :back  , class: "btn btn-secondary right"
         = f.submit "Confirm" , class: "btn btn-success right"

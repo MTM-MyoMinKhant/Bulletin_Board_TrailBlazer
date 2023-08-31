@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
     member do
       get 'password_change' , to: 'users#password_change'
+      post 'password_change' , to: 'users#password_upload'
       post 'delete' , to: 'users#delete'
     end
   end
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
     end
     member do
       get 'edit/confirm' , to: 'posts#edit_confirm'
+      post 'edit/confirm', to: 'posts#edit_data'
     end
   end
 
