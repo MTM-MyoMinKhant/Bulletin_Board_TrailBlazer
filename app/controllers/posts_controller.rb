@@ -6,6 +6,11 @@ class PostsController < ApplicationController
       @post_lists = result[:posts]
       @for_csv = result[:for_csv]
       @q = Post.ransack(params[:q])
+      
+      respond_to do |format|
+        format.html
+        format.csv { send_data Post.to_csv , filename: "custom.csv"}
+      end
     end
   end
 

@@ -20,7 +20,7 @@ html
             -if @auth.role == 0
               =link_to "Users" , users_path , class: "color1 link"
             =link_to "Posts" , posts_path , class: "color1 link"
-        
+      
         .right.h-right 
           -if user_signed_in?
             -if @auth.role == 0
@@ -37,17 +37,16 @@ html
             = link_to "Sign Up" , new_user_registration_path , class: "color1 link"
           
     = yield
-
+    
     footer#footer 
       .clearfix 
         .left 
           h4.color1 MetaTeam Myanmar 
         .right 
           h4.color1 Copyright &#169; MetaTeam Myanmar Co., Ltd. All rights reserved.
-          
+        
     script src="https://kit.fontawesome.com/3f5139a7c1.js" crossorigin="anonymous"
     = javascript_include_tag 'bootstrap.bundle' 
     = javascript_include_tag 'bootstrap.bundle.min'   
     = javascript_include_tag 'jquery' 
     = javascript_include_tag 'custom' 
-

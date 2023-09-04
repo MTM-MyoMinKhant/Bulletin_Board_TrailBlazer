@@ -4,6 +4,15 @@ module User::Operation
       step Model(User , :new)
       step Contract::Build(constant: User::Contract::Create)
     end
+
+    class Confirm < Trailblazer::Operation
+      step :find_data
+
+      def find_data(options , params)
+        options['user'] = User.where(id: options[:id])
+      end
+    end
+
     step Nested(Present)
     step :assign_create_user!
     step Contract::Validate(key: :user)

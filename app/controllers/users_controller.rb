@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
   def new_confirm 
     @auth = current_user
-    run User::Operation::Confirm::Present, id: params[:user] do |result|
+    run User::Operation::Create::Confirm, id: params[:user] do |result|
       @result = result[:user]
       @user = @result[0]
     end

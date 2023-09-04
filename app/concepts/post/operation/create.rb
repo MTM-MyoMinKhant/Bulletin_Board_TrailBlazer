@@ -15,10 +15,5 @@ module Post::Operation
       options[:params][:post][:create_user_id] = options[:current_user][:id]
       options[:params][:post][:updated_user_id] = options[:current_user][:id]
     end
-
-    def fetch_id(options , **)
-      byebug
-      @test = 'success'
-    end
   end
 end

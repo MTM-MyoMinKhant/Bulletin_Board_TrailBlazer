@@ -7,8 +7,6 @@ module User::Operation
       options[:model][:deleted_user_id] = options[:params][:deleted_user_id]
       options[:model][:deleted_at] = Time.now
       options[:model].save
-      byebug
-      @test = 'success'
     end
   end
 end
